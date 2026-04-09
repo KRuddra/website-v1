@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en" class="text-white bg-black">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Ruddra Kantaria | BCS (Bachelors in Computer Science)</title>
+    <meta name="description" content="Portfolio of Ruddra Kantaria - Software Engineer specializing in web solutions and data engineering."/>
+    <meta name="author" content="Ruddra Kantaria"/>
+    <meta name="keywords" content="Ruddra Kantaria,Software Engineer,Data Engineer,Web Developer,Computer Science,University of Waterloo,Canada"/>
+    <meta name="creator" content="Ruddra Kantaria"/>
+    <meta name="robots" content="index, follow"/>
+    <link rel="canonical" href="https://ruddra.com"/>
+    <meta property="og:title" content="Ruddra Kantaria | Portfolio"/>
+    <meta property="og:description" content="Portfolio of Ruddra Kantaria - Software Engineer specializing in web solutions and data engineering."/>
+    <meta property="og:url" content="https://ruddra.com"/>
+    <meta property="og:type" content="website"/>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+      *, *::before, *::after {
+        cursor: none !important;
+      }
+      
+      /* Force cursor none on all states including active and focus */
+      a, a:hover, a:active, a:focus, a:visited,
+      button, button:hover, button:active, button:focus,
+      [tabindex], [tabindex]:hover, [tabindex]:active, [tabindex]:focus {
+        cursor: none !important;
+      }
+      
+      /* Theme transitions */
+      html, body {
+        transition: background-color 0.8s ease, color 0.8s ease;
+      }
+      
+      /* Star theme (default) */
+      html {
+        background-color: transparent;
+        color: #ffffff;
+      }
+      
+      /* Light theme */
+      html.light {
+        background-color: #ffffff;
+        color: #000000;
+      }
+      
+      /* Dark theme */
+      html.dark {
+        background-color: #000000;
+        color: #ffffff;
+      }
+      
+      /* Green theme */
+      html.green {
+        background-color: #0d4f3c;
+        color: #ffffff;
+      }
+      
+      body {
+        background-color: transparent;
+        color: inherit;
+      }
+      
+      /* Make body transparent for star theme */
+      html:not(.light):not(.dark):not(.green) body {
+        background-color: transparent;
+      }
+      
+      /* Set proper backgrounds for other themes */
+      html.light body {
+        background-color: #ffffff;
+      }
+      
+      html.dark body {
+        background-color: #000000;
+      }
+      
+      html.green body {
+        background-color: #0d4f3c;
+      }
+      
+      /* Star background */
+      .star-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                    radial-gradient(circle at 40% 80%, rgba(120, 200, 255, 0.3) 0%, transparent 50%),
+                    #000000;
+        animation: twinkle 4s ease-in-out infinite alternate;
+      }
+      
+      @keyframes twinkle {
+        0% { opacity: 1; }
+        100% { opacity: 0.8; }
+      }
+      
+      .star {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        opacity: 0.8;
+        animation: sparkle 3s linear infinite, float 20s ease-in-out infinite;
+      }
+      
+      @keyframes sparkle {
+        0%, 100% { opacity: 0.3; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.2); }
+      }
+      
+      @keyframes float {
+        0%, 100% { transform: translate(0, 0) rotate(0deg); }
+        25% { transform: translate(10px, -15px) rotate(90deg); }
+        50% { transform: translate(-5px, 10px) rotate(180deg); }
+        75% { transform: translate(-15px, -5px) rotate(270deg); }
+      }
+      
+      /* Hide star background for non-star themes */
+      .light .star-background,
+      .dark .star-background,
+      .green .star-background {
+        display: none;
+      }
+      
+      .custom-cursor {
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        background-color: #fff;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: none;
+        will-change: transform;
+      }
+      
+      .light .custom-cursor {
+        background-color: #000;
+      }
+      
+      .dark .custom-cursor {
+        background-color: #fff;
+      }
+      
+      .green .custom-cursor {
+        background-color: #fff;
+      }
+      
+      .custom-cursor.hover {
+        width: 16px;
+        height: 16px;
+        background-color: rgba(255, 255, 255, 0.8);
+        transition: width 0.2s ease, height 0.2s ease;
+      }
+      
+      .light .custom-cursor.hover {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+      
+      .dark .custom-cursor.hover {
+        background-color: rgba(255, 255, 255, 0.8);
+      }
+      
+      .green .custom-cursor.hover {
+        background-color: rgba(255, 255, 255, 0.8);
+      }
+      
+      .custom-cursor.click {
+        width: 6px;
+        height: 6px;
+        transition: width 0.1s ease, height 0.1s ease;
+      }
+      
+      /* Smooth transitions for all elements */
+      a, button, [tabindex] {
+        transition: all 0.3s ease;
+      }
+      
+      /* Add smooth transitions for background and border colors */
+      .bg-neutral-50, .bg-neutral-100, .bg-neutral-800, .bg-neutral-900,
+      .border-neutral-200, .border-neutral-700,
+      .hover\:bg-neutral-50:hover, .hover\:bg-neutral-200:hover, 
+      .hover\:bg-neutral-700:hover, .hover\:bg-neutral-900:hover {
+        transition: all 0.8s ease;
+      }
+      
+      a:hover, button:hover, [tabindex]:hover {
+        transform: translateY(-2px);
+      }
+      
+      /* Animation Classes */
+      .animate-element {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      
+      .animate-element.animate-in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .animate-element-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      
+      .animate-element-left.animate-in {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      
+      .animate-element-right {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      
+      .animate-element-right.animate-in {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      
+      .animate-element-scale {
+        opacity: 0;
+        transform: scale(0.8);
+        transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      
+      .animate-element-scale.animate-in {
+        opacity: 1;
+        transform: scale(1);
+      }
+      
+      .animate-fade {
+        opacity: 0;
+        transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      
+      .animate-fade.animate-in {
+        opacity: 1;
+      }
+      
+      /* Stagger delays for sequential animations */
+      .animate-delay-1 { transition-delay: 0.1s; }
+      .animate-delay-2 { transition-delay: 0.2s; }
+      .animate-delay-3 { transition-delay: 0.3s; }
+      .animate-delay-4 { transition-delay: 0.4s; }
+      .animate-delay-5 { transition-delay: 0.5s; }
+      .animate-delay-6 { transition-delay: 0.6s; }
+      .animate-delay-7 { transition-delay: 0.7s; }
+      .animate-delay-8 { transition-delay: 0.8s; }
+      
+      /* Theme-specific text colors */
+      .text-neutral-700 {
+        color: #d4d4d4;
+      }
+      .light .text-neutral-700 {
+        color: #404040;
+      }
+      .dark .text-neutral-700 {
+        color: #d4d4d4;
+      }
+      .green .text-neutral-700 {
+        color: #d4d4d4;
+      }
+      
+      .text-neutral-600 {
+        color: #a3a3a3;
+      }
+      .light .text-neutral-600 {
+        color: #525252;
+      }
+      .dark .text-neutral-600 {
+        color: #a3a3a3;
+      }
+      .green .text-neutral-600 {
+        color: #a3a3a3;
+      }
+      
+      .text-neutral-400 {
+        color: #525252;
+      }
+      .light .text-neutral-400 {
+        color: #a3a3a3;
+      }
+      .dark .text-neutral-400 {
+        color: #525252;
+      }
+      .green .text-neutral-400 {
+        color: #525252;
+      }
+      
+      .text-neutral-300 {
+        color: #404040;
+      }
+      .light .text-neutral-300 {
+        color: #d4d4d4;
+      }
+      .dark .text-neutral-300 {
+        color: #404040;
+      }
+      .green .text-neutral-300 {
+        color: #404040;
+      }
+      
+      /* Theme-specific border colors */
+      .border-neutral-200 {
+        border-color: rgba(82, 82, 82, 0.5);
+      }
+      .light .border-neutral-200 {
+        border-color: #e5e5e5;
+      }
+      .dark .border-neutral-200 {
+        border-color: #525252;
+      }
+      .green .border-neutral-200 {
+        border-color: #525252;
+      }
+      
+      .border-neutral-700 {
+        border-color: rgba(229, 229, 229, 0.3);
+      }
+      .light .border-neutral-700 {
+        border-color: #404040;
+      }
+      .dark .border-neutral-700 {
+        border-color: #e5e5e5;
+      }
+      .green .border-neutral-700 {
+        border-color: #e5e5e5;
+      }
+      
+      /* Theme-specific background colors - Make star theme backgrounds semi-transparent */
+      .bg-neutral-50 {
+        background-color: rgba(23, 23, 23, 0.4);
+      }
+      .light .bg-neutral-50 {
+        background-color: #fafafa;
+      }
+      .dark .bg-neutral-50 {
+        background-color: #171717;
+      }
+      .green .bg-neutral-50 {
+        background-color: #0a3a2a;
+      }
+      
+      .bg-neutral-100 {
+        background-color: rgba(38, 38, 38, 0.4);
+      }
+      .light .bg-neutral-100 {
+        background-color: #f5f5f5;
+      }
+      .dark .bg-neutral-100 {
+        background-color: #262626;
+      }
+      .green .bg-neutral-100 {
+        background-color: #0a3a2a;
+      }
+      
+      .bg-neutral-800 {
+        background-color: rgba(245, 245, 245, 0.1);
+      }
+      .light .bg-neutral-800 {
+        background-color: #262626;
+      }
+      .dark .bg-neutral-800 {
+        background-color: #f5f5f5;
+      }
+      .green .bg-neutral-800 {
+        background-color: #0a3a2a;
+      }
+      
+      .bg-neutral-900 {
+        background-color: rgba(250, 250, 250, 0.05);
+      }
+      .light .bg-neutral-900 {
+        background-color: #171717;
+      }
+      .dark .bg-neutral-900 {
+        background-color: #fafafa;
+      }
+      .green .bg-neutral-900 {
+        background-color: #0a3a2a;
+      }
+      
+      /* Hover states */
+      .hover\:bg-neutral-50:hover {
+        background-color: rgba(23, 23, 23, 0.6);
+      }
+      .light .hover\:bg-neutral-50:hover {
+        background-color: #fafafa;
+      }
+      .dark .hover\:bg-neutral-50:hover {
+        background-color: #171717;
+      }
+      .green .hover\:bg-neutral-50:hover {
+        background-color: #0a3a2a;
+      }
+      
+      .hover\:bg-neutral-200:hover {
+        background-color: rgba(64, 64, 64, 0.4);
+      }
+      .light .hover\:bg-neutral-200:hover {
+        background-color: #e5e5e5;
+      }
+      .dark .hover\:bg-neutral-200:hover {
+        background-color: #404040;
+      }
+      .green .hover\:bg-neutral-200:hover {
+        background-color: #0f4f3a;
+      }
+      
+      .hover\:bg-neutral-700:hover {
+        background-color: rgba(229, 229, 229, 0.1);
+      }
+      .light .hover\:bg-neutral-700:hover {
+        background-color: #404040;
+      }
+      .dark .hover\:bg-neutral-700:hover {
+        background-color: #e5e5e5;
+      }
+      .green .hover\:bg-neutral-700:hover {
+        background-color: #0f4f3a;
+      }
+      
+      .hover\:bg-neutral-900:hover {
+        background-color: rgba(250, 250, 250, 0.08);
+      }
+      .light .hover\:bg-neutral-900:hover {
+        background-color: #171717;
+      }
+      .dark .hover\:bg-neutral-900:hover {
+        background-color: #fafafa;
+      }
+      .green .hover\:bg-neutral-900:hover {
+        background-color: #0a3a2a;
+      }
+      
+      .hover\:text-neutral-800:hover {
+        color: #d4d4d4;
+      }
+      .light .hover\:text-neutral-800:hover {
+        color: #262626;
+      }
+      .dark .hover\:text-neutral-800:hover {
+        color: #d4d4d4;
+      }
+      .green .hover\:text-neutral-800:hover {
+        color: #d4d4d4;
+      }
+      
+      .hover\:text-neutral-200:hover {
+        color: #525252;
+      }
+      .light .hover\:text-neutral-200:hover {
+        color: #e5e5e5;
+      }
+      .dark .hover\:text-neutral-200:hover {
+        color: #525252;
+      }
+      .green .hover\:text-neutral-200:hover {
+        color: #525252;
+      }
+      
+      .hover\:text-neutral-100:hover {
+        color: #404040;
+      }
+      .light .hover\:text-neutral-100:hover {
+        color: #f5f5f5;
+      }
+      .dark .hover\:text-neutral-100:hover {
+        color: #404040;
+      }
+      .green .hover\:text-neutral-100:hover {
+        color: #404040;
+      }
+      
+      /* Ensure custom cursor stays on top */
+      .custom-cursor {
+        z-index: 99999 !important;
+        pointer-events: none !important;
+      }
+      
+      /* Hide cursor on mobile */
+      @media (max-width: 768px) {
+        *, *::before, *::after,
+        a, a:hover, a:active, a:focus, a:visited,
+        button, button:hover, button:active, button:focus,
+        [tabindex], [tabindex]:hover, [tabindex]:active, [tabindex]:focus {
+          cursor: auto !important;
+        }
+        .custom-cursor {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  
+  <body class="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
+    <!-- Star Background -->
+    <div class="star-background animate-fade"></div>
+    
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+
+    <main class="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
+      <aside class="-ml-[8px] mb-16 tracking-tight animate-element-left">
+        <div class="lg:sticky lg:top-20">
+          <nav class="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative" id="nav">
+            <div class="flex flex-row space-x-0 pr-10">
+              <a href="index.html" class="inline-block transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1 font-semibold animate-element animate-delay-1" tabindex="0">home</a>
+              <a href="about.html" class="inline-block transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1 animate-element animate-delay-2" tabindex="0">about</a>
+              <a href="projects.html" class="inline-block transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1 animate-element animate-delay-3" tabindex="0">projects</a>
+            </div>
+          </nav>
+        </div>
+      </aside>
+
+      <section>
+        <div class="mb-12">
+          <h1 class="mb-4 text-3xl font-semibold tracking-tighter animate-element animate-delay-2">
+            <span>Ruddra Kantaria</span>
+          </h1>
+          <p class="mb-4 text-neutral-700 dark:text-neutral-300 animate-element animate-delay-3">
+            I'm a computer science student at the University of Waterloo. I am currently working at BlueDot as a SWE intern and I will be working there part-time after my internship. Passionate and have drive about pushing changes with technology.
+          </p>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400 animate-element animate-delay-4">Currently based in Canada</p>
+        </div>
+
+
+
+<!-- Featured Projects Section -->
+<div class="mb-12 animate-element animate-delay-6">
+  <h2 class="mb-6 text-xl font-semibold tracking-tight">Featured Projects</h2>
+  <div class="space-y-4">
+    <div class="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors animate-element animate-delay-7">
+      <h3 class="font-semibold mb-2">IntroSpectacle</h3>
+      <p class="text-sm text-neutral-600 dark:text-neutral-400">
+        A real-time facial recognition system built at Hack the North using Python, OpenCV, and MongoDB to enhance memory in social interactions.
+      </p>
+    </div>
+    <div class="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors animate-element animate-delay-8">
+      <h3 class="font-semibold mb-2">Symbiote</h3>
+      <p class="text-sm text-neutral-600 dark:text-neutral-400">
+        A full-stack React-based AI platform enabling users to create and edit images using advanced generative tools.
+      </p>
+    </div>
+  </div>
+
+  <!-- View All Projects Link -->
+  <div class="mt-6 animate-element-right animate-delay-8">
+    <a href="projects.html" class="inline-block text-sm text-neutral-700 dark:text-neutral-300 hover:underline">
+      View all projects →
+    </a>
+  </div>
+</div>
+
+        <!-- Theme Toggle -->
+        <div class="mb-12 animate-element-scale animate-delay-7">
+          <button id="themeToggle" class="px-4 py-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+            Change Theme
+          </button>
+        </div>
+
+        <footer class="mb-16 animate-element animate-delay-8">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <a href="https://cs.uwatering.com/#ruddrakantaria.com?nav=prev">←</a>
+           <a href="https://cs.uwatering.com/#ruddrakantaria.com" target="_blank">
+            <img id="theme-logo" src="lionwhite.svg" alt="CS Webring" style="width: 24px; height: auto; opacity: 0.8;" onerror="this.style.display='none'" />
+            </a>
+            <a href="https://cs.uwatering.com/#ruddrakantaria.com?nav=next">→</a>
+          </div>
+          <ul class="font-sm mt-8 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300">
+            <li><a class="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100" rel="noopener noreferrer" target="_blank" href="https://github.com/kruddra"><p class="ml-2 h-7">github</p></a></li>
+            <li><a class="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100" rel="noopener noreferrer" target="_blank" href="https://linkedin.com/in/ruddra-kantaria"><p class="ml-2 h-7">linkedin</p></a></li>
+            <li><a class="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100" rel="noopener noreferrer" target="_blank" href="https://drive.google.com/file/d/1PVpd51QclQeG30ahNOBqAzfiJfYdrxBC/view?usp=sharing"><p class="ml-2 h-7">resume</p></a></li>
+            <li><a class="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100" rel="noopener noreferrer" target="_blank" href="mailto:ruddra.kantaria@uwaterloo.ca"><p class="ml-2 h-7">contact</p></a></li>
+          </ul>
+          <p class="mt-8 text-neutral-600 dark:text-neutral-300">© 2025 Ruddra Kantaria. All rights reserved.</p>
+        </footer>
+      </section>
+    </main>
+
+    <script>
+      // Animation System
+      window.AnimationSystem = {
+        // Initialize all animations
+        init: function() {
+          this.setupIntersectionObserver();
+          this.resetAndAnimateOnLoad();
+        },
+        
+        // Reset and animate elements when page loads
+        resetAndAnimateOnLoad: function() {
+          // First, ensure all elements are reset to their initial state
+          const elements = document.querySelectorAll('.animate-element, .animate-element-left, .animate-element-right, .animate-element-scale, .animate-fade');
+          elements.forEach(element => {
+            element.classList.remove('animate-in');
+          });
+          
+          // Force a reflow to ensure the reset is applied
+          document.body.offsetHeight;
+          
+          // Wait a brief moment for page to render, then animate
+          setTimeout(() => {
+            elements.forEach(element => {
+              element.classList.add('animate-in');
+            });
+          }, 150);
+        },
+        
+        // Setup intersection observer for scroll-triggered animations
+        setupIntersectionObserver: function() {
+          const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+          };
+          
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+              }
+            });
+          }, observerOptions);
+          
+          // Observe elements that should animate on scroll
+          const scrollElements = document.querySelectorAll('.animate-on-scroll');
+          scrollElements.forEach(el => observer.observe(el));
+        }
+      };
+
+      // Theme Utility Functions
+      window.ThemeUtils = {
+        // Create animated stars
+        createStars: function() {
+          const starBackground = document.querySelector('.star-background');
+          const starCount = 100;
+          
+          for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.width = Math.random() * 3 + 1 + 'px';
+            star.style.height = star.style.width;
+            star.style.animationDelay = Math.random() * 3 + 's';
+            
+            // Add random duration for float animation to make movement more varied
+            const floatDuration = 15 + Math.random() * 25; // 15-40 seconds
+            star.style.animationDuration = `3s, ${floatDuration}s`;
+            
+            starBackground.appendChild(star);
+          }
+        },
+        
+        // Initialize custom cursor
+        initCustomCursor: function() {
+          const cursor = document.querySelector('.custom-cursor');
+          const hoverableElements = document.querySelectorAll('a, button, [tabindex], input, textarea');
+          
+          let mouseX = 0;
+          let mouseY = 0;
+          
+          // Track mouse movement with requestAnimationFrame for smooth performance
+          document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+          });
+          
+          // Smooth cursor animation
+          function animateCursor() {
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+            requestAnimationFrame(animateCursor);
+          }
+          
+          // Start cursor animation
+          animateCursor();
+          
+          // Add hover effects
+          hoverableElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+              cursor.classList.add('hover');
+            });
+            
+            element.addEventListener('mouseleave', () => {
+              cursor.classList.remove('hover');
+            });
+            
+            // Prevent default cursor on all mouse events
+            element.addEventListener('mousedown', (e) => {
+              e.preventDefault();
+              cursor.classList.add('click');
+            });
+            
+            element.addEventListener('mouseup', () => {
+              cursor.classList.remove('click');
+            });
+            
+            // Additional event listeners to ensure custom cursor stays
+            element.addEventListener('click', (e) => {
+              // Don't prevent default for actual link functionality
+              cursor.classList.remove('click');
+            });
+            
+            element.addEventListener('focus', () => {
+              cursor.classList.add('hover');
+            });
+            
+            element.addEventListener('blur', () => {
+              cursor.classList.remove('hover');
+            });
+          });
+          
+          // Global click effects
+          document.addEventListener('mousedown', () => {
+            cursor.classList.add('click');
+          });
+          
+          document.addEventListener('mouseup', () => {
+            cursor.classList.remove('click');
+          });
+          
+          // Hide cursor when leaving window
+          document.addEventListener('mouseleave', () => {
+            cursor.style.opacity = '0';
+          });
+          
+          document.addEventListener('mouseenter', () => {
+            cursor.style.opacity = '1';
+          });
+          
+          // Ensure cursor stays visible during navigation
+          document.addEventListener('beforeunload', () => {
+            cursor.style.opacity = '1';
+          });
+          
+          // Initialize cursor position
+          cursor.style.left = '0px';
+          cursor.style.top = '0px';
+          cursor.style.opacity = '1';
+        },
+        
+initThemeToggle: function(buttonId) {
+  const themeToggle = document.getElementById(buttonId);
+  const html = document.documentElement;
+  const svgUse = themeToggle.querySelector('svg use');
+  const themeLogo = document.getElementById('theme-logo');
+
+  let currentTheme = localStorage.getItem('theme') || 'star';
+  applyTheme(currentTheme);
+
+  themeToggle.addEventListener('click', () => {
+    html.classList.remove('light', 'dark', 'green');
+
+    if (currentTheme === 'star') {
+      html.classList.add('light');
+      currentTheme = 'light';
+    } else if (currentTheme === 'light') {
+      html.classList.add('dark');
+      currentTheme = 'dark';
+    } else {
+      currentTheme = 'star';
+    }
+
+    updateUI(currentTheme);
+    localStorage.setItem('theme', currentTheme);
+  });
+
+  function applyTheme(theme) {
+    if (theme !== 'star') {
+      html.classList.add(theme);
+    }
+    updateUI(theme);
+  }
+
+  function updateUI(theme) {
+    if (svgUse) svgUse.setAttribute('href', `#icon-${theme}`);
+    if (themeLogo) {
+      themeLogo.src = (theme === 'light') ? 'lion.svg' : 'lionwhite.svg';
+    }
+  }
+},
+
+        
+        // Initialize all theme utilities
+        init: function(themeToggleId = 'themeToggle') {
+          this.createStars();
+          this.initCustomCursor();
+          this.initThemeToggle(themeToggleId);
+        }
+      };
+
+      // Auto-initialize when DOM is loaded AND on page show (for back/forward navigation)
+      document.addEventListener('DOMContentLoaded', function() {
+        // Initialize theme utilities
+        if (window.ThemeUtils) {
+          window.ThemeUtils.init();
+        }
+        
+        // Initialize animation system
+        if (window.AnimationSystem) {
+          window.AnimationSystem.init();
+        }
+      });
+
+      // Also trigger animations when page is shown (including back/forward navigation)
+      window.addEventListener('pageshow', function(event) {
+        // Initialize animation system every time page is shown
+        if (window.AnimationSystem) {
+          window.AnimationSystem.resetAndAnimateOnLoad();
+        }
+      });
+
+      // Trigger animations when navigating back via browser history
+      window.addEventListener('popstate', function() {
+        if (window.AnimationSystem) {
+          setTimeout(() => {
+            window.AnimationSystem.resetAndAnimateOnLoad();
+          }, 50);
+        }
+      });
+    </script>
+<!-- JavaScript: Update custom cursor hover targets -->
+<!-- JavaScript -->
+    <script>
+        // Move cursor (for demo purposes)
+        document.addEventListener('mousemove', (e) => {
+            const cursor = document.querySelector('.custom-cursor');
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Modal functionality
+        const sayHiBtn = document.getElementById('sayHiBtn');
+        const contactModal = document.getElementById('contactModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalContent = document.querySelector('#contactModal .modal-content');
+        const messageTextarea = document.getElementById('message');
+
+        // Function to open modal
+        const openModal = () => {
+            contactModal.classList.remove('opacity-0', 'pointer-events-none');
+            contactModal.classList.add('opacity-100');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+            document.body.classList.add('overflow-hidden');
+            
+            // Focus the textarea after modal opens
+            setTimeout(() => {
+                messageTextarea.focus();
+            }, 300);
+        };
+
+        // Function to close modal
+        const closeModalFunction = () => {
+            contactModal.classList.add('opacity-0', 'pointer-events-none');
+            contactModal.classList.remove('opacity-100');
+            modalContent.classList.add('scale-95');
+            modalContent.classList.remove('scale-100');
+            document.body.classList.remove('overflow-hidden');
+        };
+
+        // Event listeners
+        sayHiBtn.addEventListener('click', openModal);
+        closeModal.addEventListener('click', closeModalFunction);
+
+        // Close modal when clicking outside
+        contactModal.addEventListener('click', (e) => {
+            if (e.target === contactModal) {
+                closeModalFunction();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !contactModal.classList.contains('opacity-0')) {
+                closeModalFunction();
+            }
+        });
+
+        // Custom cursor hover effects
+        document.addEventListener('DOMContentLoaded', () => {
+            const cursor = document.querySelector('.custom-cursor');
+            const hoverable = document.querySelectorAll('a, button, [tabindex], input, textarea');
+            
+            hoverable.forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            });
+        });
+
+        // Handle form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const message = document.getElementById('message').value.trim();
+            
+            if (!message) {
+                alert('Please enter a message before sending.');
+                return;
+            }
+            
+            // Here you would typically send the message to your backend
+            console.log('Message submitted:', message);
+            
+            // Close modal and reset form
+            closeModalFunction();
+            document.getElementById('message').value = '';
+            
+            // Success notification
+            setTimeout(() => {
+                alert('Thanks for your message! I\'ll get back to you soon.');
+            }, 300);
+        });
+    </script>
+
+  </body>
+</html>

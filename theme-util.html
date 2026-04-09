@@ -1,0 +1,535 @@
+<!-- Theme Utility Component -->
+<style>
+  /* Theme transitions */
+  html, body {
+    transition: background-color 0.8s ease, color 0.8s ease;
+  }
+  
+  /* Star theme (default) */
+  html {
+    background-color: transparent;
+    color: #ffffff;
+  }
+  
+  /* Light theme */
+  html.light {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  /* Dark theme */
+  html.dark {
+    background-color: #000000;
+    color: #ffffff;
+  }
+  
+  /* Green theme */
+  html.green {
+    background-color: #0d4f3c;
+    color: #ffffff;
+  }
+  
+  body {
+    background-color: transparent;
+    color: inherit;
+  }
+  
+  /* Make body transparent for star theme */
+  html:not(.light):not(.dark):not(.green) body {
+    background-color: transparent;
+  }
+  
+  /* Set proper backgrounds for other themes */
+  html.light body {
+    background-color: #ffffff;
+  }
+  
+  html.dark body {
+    background-color: #000000;
+  }
+  
+  html.green body {
+    background-color: #0d4f3c;
+  }
+  
+  /* Star background */
+  .star-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(120, 200, 255, 0.3) 0%, transparent 50%),
+                #000000;
+    animation: twinkle 4s ease-in-out infinite alternate;
+  }
+  
+  @keyframes twinkle {
+    0% { opacity: 1; }
+    100% { opacity: 0.8; }
+  }
+  
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: sparkle 3s linear infinite, float 20s ease-in-out infinite;
+  }
+  
+  @keyframes sparkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(10px, -15px) rotate(90deg); }
+    50% { transform: translate(-5px, 10px) rotate(180deg); }
+    75% { transform: translate(-15px, -5px) rotate(270deg); }
+  }
+  
+  /* Hide star background for non-star themes */
+  .light .star-background,
+  .dark .star-background,
+  .green .star-background {
+    display: none;
+  }
+  
+  /* Custom cursor styles */
+  .custom-cursor {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: none;
+    will-change: transform;
+  }
+  
+  .light .custom-cursor {
+    background-color: #000;
+  }
+  
+  .dark .custom-cursor {
+    background-color: #fff;
+  }
+  
+  .green .custom-cursor {
+    background-color: #fff;
+  }
+  
+  .custom-cursor.hover {
+    width: 16px;
+    height: 16px;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: width 0.2s ease, height 0.2s ease;
+  }
+  
+  .light .custom-cursor.hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .dark .custom-cursor.hover {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .green .custom-cursor.hover {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .custom-cursor.click {
+    width: 6px;
+    height: 6px;
+    transition: width 0.1s ease, height 0.1s ease;
+  }
+  
+  /* Smooth transitions for all elements */
+  a, button, [tabindex] {
+    transition: all 0.3s ease;
+  }
+  
+  /* Add smooth transitions for background and border colors */
+  .bg-neutral-50, .bg-neutral-100, .bg-neutral-800, .bg-neutral-900,
+  .border-neutral-200, .border-neutral-700,
+  .hover\:bg-neutral-50:hover, .hover\:bg-neutral-200:hover, 
+  .hover\:bg-neutral-700:hover, .hover\:bg-neutral-900:hover {
+    transition: all 0.8s ease;
+  }
+  
+  a:hover, button:hover, [tabindex]:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Theme-specific text colors */
+  .text-neutral-700 {
+    color: #d4d4d4;
+  }
+  .light .text-neutral-700 {
+    color: #404040;
+  }
+  .dark .text-neutral-700 {
+    color: #d4d4d4;
+  }
+  .green .text-neutral-700 {
+    color: #d4d4d4;
+  }
+  
+  .text-neutral-600 {
+    color: #a3a3a3;
+  }
+  .light .text-neutral-600 {
+    color: #525252;
+  }
+  .dark .text-neutral-600 {
+    color: #a3a3a3;
+  }
+  .green .text-neutral-600 {
+    color: #a3a3a3;
+  }
+  
+  .text-neutral-400 {
+    color: #525252;
+  }
+  .light .text-neutral-400 {
+    color: #a3a3a3;
+  }
+  .dark .text-neutral-400 {
+    color: #525252;
+  }
+  .green .text-neutral-400 {
+    color: #525252;
+  }
+  
+  .text-neutral-300 {
+    color: #404040;
+  }
+  .light .text-neutral-300 {
+    color: #d4d4d4;
+  }
+  .dark .text-neutral-300 {
+    color: #404040;
+  }
+  .green .text-neutral-300 {
+    color: #404040;
+  }
+  
+  /* Theme-specific border colors */
+  .border-neutral-200 {
+    border-color: rgba(82, 82, 82, 0.5);
+  }
+  .light .border-neutral-200 {
+    border-color: #e5e5e5;
+  }
+  .dark .border-neutral-200 {
+    border-color: #525252;
+  }
+  .green .border-neutral-200 {
+    border-color: #525252;
+  }
+  
+  .border-neutral-700 {
+    border-color: rgba(229, 229, 229, 0.3);
+  }
+  .light .border-neutral-700 {
+    border-color: #404040;
+  }
+  .dark .border-neutral-700 {
+    border-color: #e5e5e5;
+  }
+  .green .border-neutral-700 {
+    border-color: #e5e5e5;
+  }
+  
+  /* Theme-specific background colors - Make star theme backgrounds semi-transparent */
+  .bg-neutral-50 {
+    background-color: rgba(23, 23, 23, 0.4);
+  }
+  .light .bg-neutral-50 {
+    background-color: #fafafa;
+  }
+  .dark .bg-neutral-50 {
+    background-color: #171717;
+  }
+  .green .bg-neutral-50 {
+    background-color: #0a3a2a;
+  }
+  
+  .bg-neutral-100 {
+    background-color: rgba(38, 38, 38, 0.4);
+  }
+  .light .bg-neutral-100 {
+    background-color: #f5f5f5;
+  }
+  .dark .bg-neutral-100 {
+    background-color: #262626;
+  }
+  .green .bg-neutral-100 {
+    background-color: #0a3a2a;
+  }
+  
+  .bg-neutral-800 {
+    background-color: rgba(245, 245, 245, 0.1);
+  }
+  .light .bg-neutral-800 {
+    background-color: #262626;
+  }
+  .dark .bg-neutral-800 {
+    background-color: #f5f5f5;
+  }
+  .green .bg-neutral-800 {
+    background-color: #0a3a2a;
+  }
+  
+  .bg-neutral-900 {
+    background-color: rgba(250, 250, 250, 0.05);
+  }
+  .light .bg-neutral-900 {
+    background-color: #171717;
+  }
+  .dark .bg-neutral-900 {
+    background-color: #fafafa;
+  }
+  .green .bg-neutral-900 {
+    background-color: #0a3a2a;
+  }
+  
+  /* Hover states */
+  .hover\:bg-neutral-50:hover {
+    background-color: rgba(23, 23, 23, 0.6);
+  }
+  .light .hover\:bg-neutral-50:hover {
+    background-color: #fafafa;
+  }
+  .dark .hover\:bg-neutral-50:hover {
+    background-color: #171717;
+  }
+  .green .hover\:bg-neutral-50:hover {
+    background-color: #0a3a2a;
+  }
+  
+  .hover\:bg-neutral-200:hover {
+    background-color: rgba(64, 64, 64, 0.4);
+  }
+  .light .hover\:bg-neutral-200:hover {
+    background-color: #e5e5e5;
+  }
+  .dark .hover\:bg-neutral-200:hover {
+    background-color: #404040;
+  }
+  .green .hover\:bg-neutral-200:hover {
+    background-color: #0f4f3a;
+  }
+  
+  .hover\:bg-neutral-700:hover {
+    background-color: rgba(229, 229, 229, 0.1);
+  }
+  .light .hover\:bg-neutral-700:hover {
+    background-color: #404040;
+  }
+  .dark .hover\:bg-neutral-700:hover {
+    background-color: #e5e5e5;
+  }
+  .green .hover\:bg-neutral-700:hover {
+    background-color: #0f4f3a;
+  }
+  
+  .hover\:bg-neutral-900:hover {
+    background-color: rgba(250, 250, 250, 0.08);
+  }
+  .light .hover\:bg-neutral-900:hover {
+    background-color: #171717;
+  }
+  .dark .hover\:bg-neutral-900:hover {
+    background-color: #fafafa;
+  }
+  .green .hover\:bg-neutral-900:hover {
+    background-color: #0a3a2a;
+  }
+  
+  .hover\:text-neutral-800:hover {
+    color: #d4d4d4;
+  }
+  .light .hover\:text-neutral-800:hover {
+    color: #262626;
+  }
+  .dark .hover\:text-neutral-800:hover {
+    color: #d4d4d4;
+  }
+  .green .hover\:text-neutral-800:hover {
+    color: #d4d4d4;
+  }
+  
+  .hover\:text-neutral-200:hover {
+    color: #525252;
+  }
+  .light .hover\:text-neutral-200:hover {
+    color: #e5e5e5;
+  }
+  .dark .hover\:text-neutral-200:hover {
+    color: #525252;
+  }
+  .green .hover\:text-neutral-200:hover {
+    color: #525252;
+  }
+  
+  .hover\:text-neutral-100:hover {
+    color: #404040;
+  }
+  .light .hover\:text-neutral-100:hover {
+    color: #f5f5f5;
+  }
+  .dark .hover\:text-neutral-100:hover {
+    color: #404040;
+  }
+  .green .hover\:text-neutral-100:hover {
+    color: #404040;
+  }
+  
+  /* Hide cursor on mobile */
+  @media (max-width: 768px) {
+    * {
+      cursor: auto !important;
+    }
+    .custom-cursor {
+      display: none;
+    }
+  }
+</style>
+
+<!-- Star Background -->
+<div class="star-background"></div>
+
+<!-- Custom Cursor -->
+<div class="custom-cursor"></div>
+
+<script>
+// Theme Utility Functions
+window.ThemeUtils = {
+  // Create animated stars
+  createStars: function() {
+    const starBackground = document.querySelector('.star-background');
+    const starCount = 100;
+    
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.width = Math.random() * 3 + 1 + 'px';
+      star.style.height = star.style.width;
+      star.style.animationDelay = Math.random() * 3 + 's';
+      
+      // Add random duration for float animation to make movement more varied
+      const floatDuration = 15 + Math.random() * 25; // 15-40 seconds
+      star.style.animationDuration = `3s, ${floatDuration}s`;
+      
+      starBackground.appendChild(star);
+    }
+  },
+  
+  // Initialize custom cursor
+  initCustomCursor: function() {
+    const cursor = document.querySelector('.custom-cursor');
+    const hoverableElements = document.querySelectorAll('a, button, [tabindex]');
+    
+    let mouseX = 0;
+    let mouseY = 0;
+    
+    // Track mouse movement with requestAnimationFrame for smooth performance
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+    
+    // Smooth cursor animation
+    function animateCursor() {
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    
+    // Start cursor animation
+    animateCursor();
+    
+    // Add hover effects
+    hoverableElements.forEach(element => {
+      element.addEventListener('mouseenter', () => {
+        cursor.classList.add('hover');
+      });
+      
+      element.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hover');
+      });
+    });
+    
+    // Add click effects
+    document.addEventListener('mousedown', () => {
+      cursor.classList.add('click');
+    });
+    
+    document.addEventListener('mouseup', () => {
+      cursor.classList.remove('click');
+    });
+    
+    // Hide cursor when leaving window
+    document.addEventListener('mouseleave', () => {
+      cursor.style.opacity = '0';
+    });
+    
+    document.addEventListener('mouseenter', () => {
+      cursor.style.opacity = '1';
+    });
+    
+    // Initialize cursor position
+    cursor.style.left = '0px';
+    cursor.style.top = '0px';
+  },
+  
+  // Initialize theme toggle
+  initThemeToggle: function(buttonId) {
+    const themeToggle = document.getElementById(buttonId);
+    const html = document.documentElement;
+    let currentTheme = 'star'; // star, light, dark, green
+    
+    themeToggle.addEventListener('click', () => {
+      // Remove all theme classes
+      html.classList.remove('light', 'dark', 'green');
+      
+      // Cycle through themes
+      if (currentTheme === 'star') {
+        html.classList.add('light');
+        currentTheme = 'light';
+      } else if (currentTheme === 'light') {
+        html.classList.add('dark');
+        currentTheme = 'dark';
+      } else if (currentTheme === 'dark') {
+        html.classList.add('green');
+        currentTheme = 'green';
+      } else {
+        currentTheme = 'star';
+      }
+    });
+  },
+  
+  // Initialize all theme utilities
+  init: function(themeToggleId = 'themeToggle') {
+    this.createStars();
+    this.initCustomCursor();
+    this.initThemeToggle(themeToggleId);
+  }
+};
+
+// Auto-initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.ThemeUtils) {
+    window.ThemeUtils.init();
+  }
+});
+</script>
